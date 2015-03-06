@@ -5,12 +5,12 @@ The "itch" web-cmd scratches is this: Remotely control the pianobar app on a Ras
 ### example
 	web-cmd -c pianobar -p 8888  (then open your browser to http://localhost:8888)
 
-#### flags/options (these mostly match psql arguments):
-program flag/option  | explanation
--------------------: | -------------
-  -V, --version      | prints the version of web-cmd being run
-  -v, --verbose      | prints extra information to standard out
-  -?, --help         | prints a summary of the program options
-  -c, --command      | specifies the command you want to run
-  -p, --port         | port webserver will listen on (default is 8080)
+#### options
+        option  | explanation
+--------------: | -------------
+  -V, --version | prints the version of web-cmd being run
+  -v, --verbose | prints extra information to standard out
+  -?, --help    | prints a summary of the program options
+  -c, --command | specifies the command you want to run
+  -p, --port    | port webserver will listen on (default is 8080)
 
