@@ -14,3 +14,8 @@ The "itch" web-cmd scratches is this: Remotely control the pianobar app on a Ras
   -c, --command | specifies the command you want to run
   -p, --port    | port webserver will listen on (default is 8080)
 
+#### todo
+1. Add binaries?
+2. Add help command that explains things like 'quit', 'restart', 'start', etc
+3. When pianobar is paused too long, a stream error occurs and the file is never updated: "Error reading standard output from"
+

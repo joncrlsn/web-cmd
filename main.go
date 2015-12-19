@@ -26,7 +26,14 @@ var command string
 var verbose bool
 var commander *Commander
 var tempFileName string
-var bodyFormat = ` <!doctype html> <html> <body> <h1>%s</h1> <a href="#bottom">bottom</a> <pre><code>%s</code></pre>
+var bodyFormat = ` <!doctype html> 
+<html> 
+<head>
+    <meta http-equiv="refresh" content="60">
+</head>
+<body> 
+	<h1>%s</h1> 
+	<a href="#bottom">bottom</a> <pre><code>%s</code></pre>
     <a name="bottom">
     <form method="post">
         <input name="cmd" placeholder="Enter a command" autofocus>
@@ -124,16 +131,20 @@ func handleGet(w http.ResponseWriter, r *http.Request) {
 // handlePost handles the stdin submission
 func handlePost(w http.ResponseWriter, r *http.Request) {
 	cmd := r.FormValue("cmd")
-	if cmd == "restart" {
-		if commander.done {
-			fmt.Printf("Restarting %s commander\n", command)
-			// create a new one
-			c, err := startCommander(command, tempFileName)
-			commander = c
-			if err != nil {
-				fmt.Printf("Error restarting %s: %s\n", command, err)
-			}
+	if cmd == "help" {
+		commander.WriteString("commands: help, restart")
+	} else if cmd == "restart" {
+		if !commander.done {
+			commander.Close()
 		}
+		fmt.Printf("Restarting %s commander\n", command)
+		// create a new one
+		c, err := startCommander(command, tempFileName)
+		commander = c
+		if err != nil {
+			fmt.Printf("Error restarting %s: %s\n", command, err)
+		}
+
 		http.Redirect(w, r, context, 302)
 		return
 	}

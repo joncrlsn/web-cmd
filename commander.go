@@ -134,6 +134,12 @@ var massageOutputBytes = func(bytes []byte) []byte {
 	return bytes
 }
 
+// restart can be overridden for custom behaviors.
+var restart = func() {
+	// This does nothing, but customizations may do something different
+	return
+}
+
 // WriteString writes to std in of the command and to the output file
 func (c *Commander) WriteString(text string) (int, error) {
 	if len(text) == 0 {

@@ -13,6 +13,7 @@ func customize(cmd string) {
 	if strings.Contains(cmd, "pianobar") {
 		writeToStdIn = writeToStdInPianobar
 		massageOutputBytes = massageOutputBytesPianobar
+		//restart = restartPianobar
 	}
 }
 
@@ -45,3 +46,5 @@ var massageOutputBytesPianobar = func(bytesIn []byte) []byte {
 	bytes3 := bytes.Replace(bytes2, removePrefix, []byte{}, 1)
 	return bytes3
 }
+
+//var restartPianobar = `0i//
